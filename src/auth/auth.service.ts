@@ -1,4 +1,8 @@
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { SignupAuthDto } from './dto/signup-auth.dto';
 import * as bcrypt from 'bcrypt';
@@ -20,8 +24,8 @@ export class AuthService {
     await this.prisma.user.create({
       data: {
         email,
-        hashedPassword
-      }
+        hashedPassword,
+      },
     });
     return `signup was successfully`;
   }
