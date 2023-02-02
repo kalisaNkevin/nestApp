@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Req, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupAuthDto } from './dto/signup-auth.dto';
 import {
@@ -14,7 +23,6 @@ import {
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
- 
   @Post('signup')
   @ApiCreatedResponse({ description: 'User Registration successfuly' })
   @ApiBody({ type: SignupAuthDto })

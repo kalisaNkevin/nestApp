@@ -616,6 +616,13 @@
     "jsonc-parser" "3.2.0"
     "pluralize" "8.0.0"
 
+"@nestjs/serve-static@^3.0.0":
+  "integrity" "sha512-TpXjgs4136dQqWUjEcONqppqXDsrJhRkmKWzuBMOUAnP4HjHpNmlycvkHnDnWSoG2YD4a7Enh4ViYGWqCfHStA=="
+  "resolved" "https://registry.npmjs.org/@nestjs/serve-static/-/serve-static-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "path-to-regexp" "0.2.5"
+
 "@nestjs/swagger@^6.1.4":
   "integrity" "sha512-kE8VjR+NaoKqxg8XqM/YYfALScPh4AcoR8Wywga8/OxHsTHY+MKxqvTpWp7IhCUWSA6xT8nQUpcC9Rt7C+r7Hw=="
   "resolved" "https://registry.npmjs.org/@nestjs/swagger/-/swagger-6.1.4.tgz"
@@ -2203,6 +2210,11 @@
 "inherits@^2.0.3", "inherits@^2.0.4", "inherits@~2.0.3", "inherits@2", "inherits@2.0.4":
   "version" "2.0.4"
 
+"inherits@2.0.3":
+  "integrity" "sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw=="
+  "resolved" "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz"
+  "version" "2.0.3"
+
 "inquirer@7.3.3":
   "version" "7.3.3"
   dependencies:
@@ -3087,11 +3099,24 @@
 "path-to-regexp@0.1.7":
   "version" "0.1.7"
 
+"path-to-regexp@0.2.5":
+  "integrity" "sha512-l6qtdDPIkmAmzEO6egquYDfqQGPMRNGjYtrU13HAXb3YSRrt7HSb1sJY0pKp6o2bAa86tSB6iwaW2JbthPKr7Q=="
+  "resolved" "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.2.5.tgz"
+  "version" "0.2.5"
+
 "path-to-regexp@3.2.0":
   "version" "3.2.0"
 
 "path-type@^4.0.0":
   "version" "4.0.0"
+
+"path@^0.12.7":
+  "integrity" "sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q=="
+  "resolved" "https://registry.npmjs.org/path/-/path-0.12.7.tgz"
+  "version" "0.12.7"
+  dependencies:
+    "process" "^0.11.1"
+    "util" "^0.10.3"
 
 "pause@0.0.1":
   "integrity" "sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg=="
@@ -3143,6 +3168,11 @@
 
 "process-nextick-args@~2.0.0":
   "version" "2.0.1"
+
+"process@^0.11.1":
+  "integrity" "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
+  "resolved" "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
+  "version" "0.11.10"
 
 "prompts@^2.0.1":
   "version" "2.4.2"
@@ -3700,6 +3730,13 @@
 
 "util-deprecate@^1.0.1", "util-deprecate@~1.0.1":
   "version" "1.0.2"
+
+"util@^0.10.3":
+  "integrity" "sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A=="
+  "resolved" "https://registry.npmjs.org/util/-/util-0.10.4.tgz"
+  "version" "0.10.4"
+  dependencies:
+    "inherits" "2.0.3"
 
 "utils-merge@^1.0.1", "utils-merge@1.0.1":
   "version" "1.0.1"
