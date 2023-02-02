@@ -16,7 +16,7 @@ export class AuthController {
 
  
   @Post('signup')
-  @ApiCreatedResponse({ description: 'User Registration' })
+  @ApiCreatedResponse({ description: 'User Registration successfuly' })
   @ApiBody({ type: SignupAuthDto })
   signup(@Body() dto: SignupAuthDto) {
     return this.authService.signup(dto);
