@@ -24,7 +24,7 @@ export class AuthController {
 
   @Post('signin')
   @ApiOkResponse({ description: 'User Login' })
-  @ApiUnauthorizedResponse({ description: 'Invalid credentials' })
+  @ApiUnauthorizedResponse({ description: 'Invalid credentials!' })
   @ApiBody({ type: SignupAuthDto })
   signin(@Body() dto: SignupAuthDto, @Req() req, @Res() res) {
     return this.authService.signin(dto, req, res);
