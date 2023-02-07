@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Req,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupAuthDto } from './dto/signup-auth.dto';
 import {
@@ -42,5 +33,17 @@ export class AuthController {
   @ApiCreatedResponse({ description: 'User Loggedout Successfuly' })
   signout(@Req() req, @Res() res) {
     return this.authService.signout(req, res);
+  }
+  @Post('forgort password')
+  @ApiCreatedResponse({ description: 'User Registration successfuly' })
+  @ApiBody({ type: SignupAuthDto })
+  frogotPassword(@Body() dto: SignupAuthDto) {
+    return this.authService.signup(dto);
+  }
+  @Post('reset password')
+  @ApiCreatedResponse({ description: 'User Registration successfuly' })
+  @ApiBody({ type: SignupAuthDto })
+  resetPassword(@Body() dto: SignupAuthDto) {
+    return this.authService.signup(dto);
   }
 }
