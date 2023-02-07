@@ -57,6 +57,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+## Deployments
+
+-[Swagger Documentation](https://nestapp-production.up.railway.app/api)
+-[Postman Documentation](https://documenter.getpostman.com/view/20373730/2s935pq3x4)
 
 ## Support
 
@@ -64,9 +68,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Author - [Kalisa kevin](https://kalisangabokevin.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Twitter - [Kevin kalisa](https://twitter.com/Kalisakevin_)
 
 ## License
 
