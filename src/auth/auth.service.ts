@@ -27,7 +27,7 @@ export class AuthService {
         hashedPassword,
       },
     });
-    return `signup was successfully`;
+    return { message: 'signup was successfully' };
   }
   async signin(dto: SignupAuthDto, req: Request, res: Response) {
     const { email, password } = dto;
