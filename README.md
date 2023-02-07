@@ -69,7 +69,6 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## Stay in touch
 
 - Author - [Kalisa kevin](https://kalisangabokevin.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [Kevin kalisa](https://twitter.com/Kalisakevin_)
 
 ## License
