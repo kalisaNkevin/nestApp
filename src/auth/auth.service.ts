@@ -29,6 +29,7 @@ export class AuthService {
     });
     return { message: 'signup was successfully' };
   }
+
   async signin(dto: SignupAuthDto, req: Request, res: Response) {
     const { email, password } = dto;
     const foundUser = await this.prisma.user.findUnique({ where: { email } });
@@ -52,17 +53,21 @@ export class AuthService {
     res.cookie('token', token);
     return res.send({ message: 'Logged in successfuly' });
   }
-  signout(req: Request, res: Response) {
+
+  async signout(req: Request, res: Response) {
     res.clearCookie('token');
     return res.send({ message: 'Logged out successfully' });
   }
+
   async hashPassword(password: string) {
     const saltOrRounds = 10;
     return await bcrypt.hash(password, saltOrRounds);
   }
+
   async comparePasswords(args: { password: string; hash: string }) {
     return await bcrypt.compare(args.password, args.hash);
   }
+
   async signToken(args: { id: string; email: string }) {
     const playload = args;
     return this.jwt.signAsync(playload, { secret: JwtSecret });

@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { MessageModelDto } from './dto/update-message.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Message')
 @Controller('messages')
@@ -17,8 +17,10 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Post()
-  create(@Body() createMessageDto: MessageModelDto) {
-    return this.messagesService.create(createMessageDto);
+  @ApiCreatedResponse({ description: 'Message created successfuly' })
+  @ApiBody({ type: MessageModelDto })
+  message(@Body() dto: MessageModelDto) {
+    return this.messagesService.message(dto);
   }
 
   @Get()

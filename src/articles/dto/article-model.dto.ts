@@ -5,11 +5,7 @@ export class ArticleModelDto {
   @ApiProperty()
   Title: string;
   @ApiProperty()
-  Description: string;
-  @ApiProperty()
   Body: string;
-  @ApiProperty()
-  Published: boolean;
 
   @IsNotEmpty()
   @IsString()
@@ -17,13 +13,5 @@ export class ArticleModelDto {
 
   @IsNotEmpty()
   @IsString()
-  public description: string;
-
-  @IsNotEmpty()
-  @IsString()
   public body: string;
-
-  @IsNotEmpty()
-  @IsString()
-  public published: boolean;
 }

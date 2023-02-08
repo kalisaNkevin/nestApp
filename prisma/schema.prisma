@@ -20,9 +20,7 @@ model User {
 model Article {
   id          Int      @id @default(autoincrement())
   title       String   
-  description String?
   body        String
-  published   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

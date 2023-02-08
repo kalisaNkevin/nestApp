@@ -25,33 +25,34 @@ export class ArticlesController {
   @Post()
   @ApiCreatedResponse({ description: 'Article created successfuly' })
   @ApiBody({ type: ArticleModelDto })
-  create(@Body() createArticleDto: ArticleModelDto) {
-    return this.articlesService.create(createArticleDto);
+  article(@Body() dto: ArticleModelDto) {
+    return this.articlesService.article(dto);
   }
 
   @Get()
-  @ApiOkResponse({ description: 'User Generated' })
+  @ApiOkResponse({ description: 'Article Generated' })
   @ApiBody({ type: ArticleModelDto })
-  findAll() {
-    return this.articlesService.findAll();
+  getAllBlogs() {
+    return this.articlesService.getAllBlogs();
   }
 
   @Get(':id')
   @ApiOkResponse({ description: 'User information' })
   @ApiUnauthorizedResponse({ description: 'Unauthorised' })
-  findOne(@Param('id') id: string) {
-    return this.articlesService.findOne(+id);
+  findArticle(@Param('id') id: string) {
+    return this.articlesService.findArticle(+id);
   }
 
   @Patch(':id')
-  @ApiOkResponse({ description: 'User Login' })
+  @ApiOkResponse({ description: 'Blog updated' })
   @ApiBody({ type: ArticleModelDto })
-  update(@Param('id') id: string, @Body() updateArticleDto: ArticleModelDto) {
-    return this.articlesService.update(+id, updateArticleDto);
+  updateArticle(@Param('id') id: string, @Body() dto: ArticleModelDto) {
+    return this.articlesService.updateArticle(+id, dto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.articlesService.remove(+id);
+  @ApiCreatedResponse({ description: 'Article deleted successfuly' })
+  removeArticle(@Param('id') id: string) {
+    return this.articlesService.removeaArticle(+id);
   }
 }
