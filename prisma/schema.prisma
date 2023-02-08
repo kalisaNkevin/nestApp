@@ -19,7 +19,7 @@ model User {
 
 model Article {
   id          Int      @id @default(autoincrement())
-  title       String   @unique
+  title       String   
   description String?
   body        String
   published   Boolean  @default(false)
@@ -27,3 +27,57 @@ model Article {
   updatedAt   DateTime @updatedAt
 }
 
+model Message {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  subject     String?
+  body        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Unlike {
+  id          Int      @id @default(autoincrement())
+  unlike      Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Comments {
+  id          Int      @id @default(autoincrement())
+  comment     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Rates {
+  id          Int      @id @default(autoincrement())
+  rate        Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Subscribers {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Employees {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Payments {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Like {
+  id          Int      @id @default(autoincrement())
+  like        Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
