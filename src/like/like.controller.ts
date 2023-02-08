@@ -8,8 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { LikeService } from './like.service';
-import { CreateLikeDto } from './dto/create-like.dto';
-import { UpdateLikeDto } from './dto/update-like.dto';
+import { LikeModelDto } from './dto/update-like.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Like')
@@ -18,7 +17,7 @@ export class LikeController {
   constructor(private readonly likeService: LikeService) {}
 
   @Post()
-  create(@Body() createLikeDto: CreateLikeDto) {
+  create(@Body() createLikeDto: LikeModelDto) {
     return this.likeService.create(createLikeDto);
   }
 
@@ -33,7 +32,7 @@ export class LikeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLikeDto: UpdateLikeDto) {
+  update(@Param('id') id: string, @Body() updateLikeDto: LikeModelDto) {
     return this.likeService.update(+id, updateLikeDto);
   }
 

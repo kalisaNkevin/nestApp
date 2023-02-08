@@ -8,8 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UnlikeService } from './unlike.service';
-import { CreateUnlikeDto } from './dto/create-unlike.dto';
-import { UpdateUnlikeDto } from './dto/update-unlike.dto';
+import { UnlikeModelDto } from './dto/update-unlike.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Unlike')
@@ -18,7 +17,7 @@ export class UnlikeController {
   constructor(private readonly unlikeService: UnlikeService) {}
 
   @Post()
-  create(@Body() createUnlikeDto: CreateUnlikeDto) {
+  create(@Body() createUnlikeDto: UnlikeModelDto) {
     return this.unlikeService.create(createUnlikeDto);
   }
 
@@ -33,7 +32,7 @@ export class UnlikeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUnlikeDto: UpdateUnlikeDto) {
+  update(@Param('id') id: string, @Body() updateUnlikeDto: UnlikeModelDto) {
     return this.unlikeService.update(+id, updateUnlikeDto);
   }
 

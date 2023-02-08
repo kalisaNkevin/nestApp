@@ -1,4 +1,29 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreatePayementDto } from './create-payement.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdatePayementDto extends PartialType(CreatePayementDto) {}
+export class PaymentModelDto {
+  @ApiProperty()
+  Title: string;
+  @ApiProperty()
+  Description: string;
+  @ApiProperty()
+  Body: string;
+  @ApiProperty()
+  Published: boolean;
+
+  @IsNotEmpty()
+  @IsString()
+  public title: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public description: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public body: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public published: boolean;
+}

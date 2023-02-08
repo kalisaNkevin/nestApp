@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUnlikeDto } from './dto/create-unlike.dto';
-import { UpdateUnlikeDto } from './dto/update-unlike.dto';
+import { UnlikeModelDto } from './dto/update-unlike.dto';
 
 @Injectable()
 export class UnlikeService {
-  create(createUnlikeDto: CreateUnlikeDto) {
+  create(createUnlikeDto: UnlikeModelDto) {
     return 'This action adds a new unlike';
   }
 
@@ -16,7 +15,7 @@ export class UnlikeService {
     return `This action returns a #${id} unlike`;
   }
 
-  update(id: number, updateUnlikeDto: UpdateUnlikeDto) {
+  update(id: number, updateUnlikeDto: UnlikeModelDto) {
     return `This action updates a #${id} unlike`;
   }
 

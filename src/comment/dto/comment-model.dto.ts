@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class RatingModelDto {
+export class CommentModelDto {
   @ApiProperty()
-  Rates: number;
+  Comment: string;
 
   @IsNotEmpty()
   @IsString()
-  public rates: number;
+  public comment: string;
 }

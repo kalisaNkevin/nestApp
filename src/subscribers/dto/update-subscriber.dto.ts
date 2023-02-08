@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateSubscriberDto } from './create-subscriber.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdateSubscriberDto extends PartialType(CreateSubscriberDto) {}
+export class SubscribeModelDto {
+  @ApiProperty()
+  Email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public email: string;
+}

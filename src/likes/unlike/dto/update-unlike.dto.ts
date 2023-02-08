@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateUnlikeDto } from './create-unlike.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdateUnlikeDto extends PartialType(CreateUnlikeDto) {}
+export class UnlikeModelDto {
+  @ApiProperty()
+  Unlike: boolean;
+
+  @IsNotEmpty()
+  @IsString()
+  public unlike: boolean;
+}

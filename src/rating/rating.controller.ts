@@ -8,8 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { RatingService } from './rating.service';
-import { CreateRatingDto } from './dto/create-rating.dto';
-import { UpdateRatingDto } from './dto/update-rating.dto';
+import { RatingModelDto } from './dto/update-rating.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Rates')
@@ -18,7 +17,7 @@ export class RatingController {
   constructor(private readonly ratingService: RatingService) {}
 
   @Post()
-  create(@Body() createRatingDto: CreateRatingDto) {
+  create(@Body() createRatingDto: RatingModelDto) {
     return this.ratingService.create(createRatingDto);
   }
 
@@ -33,7 +32,7 @@ export class RatingController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRatingDto: UpdateRatingDto) {
+  update(@Param('id') id: string, @Body() updateRatingDto: RatingModelDto) {
     return this.ratingService.update(+id, updateRatingDto);
   }
 

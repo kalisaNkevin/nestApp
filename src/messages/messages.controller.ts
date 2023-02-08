@@ -8,8 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { MessagesService } from './messages.service';
-import { CreateMessageDto } from './dto/create-message.dto';
-import { UpdateMessageDto } from './dto/update-message.dto';
+import { MessageModelDto } from './dto/update-message.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Message')
@@ -18,7 +17,7 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Post()
-  create(@Body() createMessageDto: CreateMessageDto) {
+  create(@Body() createMessageDto: MessageModelDto) {
     return this.messagesService.create(createMessageDto);
   }
 
@@ -33,7 +32,7 @@ export class MessagesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMessageDto: UpdateMessageDto) {
+  update(@Param('id') id: string, @Body() updateMessageDto: MessageModelDto) {
     return this.messagesService.update(+id, updateMessageDto);
   }
 

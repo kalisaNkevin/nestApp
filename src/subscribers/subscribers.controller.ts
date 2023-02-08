@@ -8,8 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { SubscribersService } from './subscribers.service';
-import { CreateSubscriberDto } from './dto/create-subscriber.dto';
-import { UpdateSubscriberDto } from './dto/update-subscriber.dto';
+import { SubscribeModelDto } from './dto/update-subscriber.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Subscribers')
@@ -18,7 +17,7 @@ export class SubscribersController {
   constructor(private readonly subscribersService: SubscribersService) {}
 
   @Post()
-  create(@Body() createSubscriberDto: CreateSubscriberDto) {
+  create(@Body() createSubscriberDto: SubscribeModelDto) {
     return this.subscribersService.create(createSubscriberDto);
   }
 
@@ -35,7 +34,7 @@ export class SubscribersController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateSubscriberDto: UpdateSubscriberDto,
+    @Body() updateSubscriberDto: SubscribeModelDto,
   ) {
     return this.subscribersService.update(+id, updateSubscriberDto);
   }
