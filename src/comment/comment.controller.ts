@@ -7,7 +7,13 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { CommentService } from './comment.service';
 import { CommentModelDto } from './dto/comment-model.dto';
 
@@ -17,27 +23,33 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Post()
-  create(@Body() createCommentDto: CommentModelDto) {
-    return this.commentService.create(createCommentDto);
+  comment(@Body() createCommentDto: CommentModelDto) {
+    return this.commentService.comment(createCommentDto);
   }
 
   @Get()
-  findAll() {
-    return this.commentService.findAll();
+  @ApiOkResponse({ description: 'Article Generated' })
+  @ApiBody({ type: CommentModelDto })
+  getAllComments() {
+    return this.commentService.getAllComments();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.commentService.findOne(+id);
+  @ApiOkResponse({ description: 'User information' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorised' })
+  findComment(@Param('id') id: string) {
+    return this.commentService.findComment(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: CommentModelDto) {
-    return this.commentService.update(+id, updateCommentDto);
+  @ApiOkResponse({ description: 'Comment updated' })
+  updateComment(@Param('id') id: string, @Body() dto: CommentModelDto) {
+    return this.commentService.updateComment(+id, dto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.commentService.remove(+id);
+  @ApiCreatedResponse({ description: 'Comment deleted successfuly' })
+  removeComment(@Param('id') id: string) {
+    return this.commentService.removeComment(+id);
   }
 }

@@ -1,25 +1,47 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'prisma/prisma.service';
 import { CommentModelDto } from './dto/comment-model.dto';
 
 @Injectable()
 export class CommentService {
-  create(createCommentDto: CommentModelDto) {
-    return 'This action adds a new comment';
+  constructor(private prisma: PrismaService) {}
+  async comment(dto: CommentModelDto) {
+    const { comment } = dto;
+    const idea = await this.prisma.comments.create({
+      data: {
+        comment,
+      },
+    });
+    return { idea };
+  }
+  async getAllComments() {
+    return await this.prisma.comments.findMany({
+      select: {
+        id: true,
+        comment: true,
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all comment`;
+  async findComment(id: number) {
+    return await this.prisma.comments.findUnique({ where: { id } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} comment`;
+  async updateComment(id: number, dto: CommentModelDto) {
+    const { comment } = dto;
+    await this.prisma.comments.findUnique({ where: { id } });
+    return await this.prisma.comments.update({
+      where: { id },
+      data: {
+        comment,
+      },
+    });
   }
 
-  update(id: number, updateCommentDto: CommentModelDto) {
-    return `This action updates a #${id} comment`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} comment`;
+  async removeComment(id: number) {
+    await this.prisma.comments.delete({
+      where: { id },
+    });
+    return { message: 'comment deleted successfuly' };
   }
 }
