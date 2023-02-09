@@ -3,27 +3,22 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class PaymentModelDto {
   @ApiProperty()
-  Title: string;
+  @IsNotEmpty()
+  @IsString()
+  public amount: number;
+
+  @IsNotEmpty()
+  @IsString()
   @ApiProperty()
-  Description: string;
+  public transactionType: string;
+
+  @IsNotEmpty()
+  @IsString()
   @ApiProperty()
-  Body: string;
+  public receiver: number;
+
+  @IsNotEmpty()
+  @IsString()
   @ApiProperty()
-  Published: boolean;
-
-  @IsNotEmpty()
-  @IsString()
-  public title: string;
-
-  @IsNotEmpty()
-  @IsString()
-  public description: string;
-
-  @IsNotEmpty()
-  @IsString()
-  public body: string;
-
-  @IsNotEmpty()
-  @IsString()
-  public published: boolean;
+  public sender: number;
 }
