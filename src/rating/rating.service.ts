@@ -1,25 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'prisma/prisma.service';
 import { RatingModelDto } from './dto/update-rating.dto';
 
 @Injectable()
 export class RatingService {
-  create(createRatingDto: RatingModelDto) {
-    return 'This action adds a new rating';
+  constructor(private prisma: PrismaService) {}
+  async rate(dto: RatingModelDto) {
+    const { rate } = dto;
+    const ratings = await this.prisma.rates.create({
+      data: {
+        rate,
+      },
+    });
+    return { ratings };
   }
 
-  findAll() {
-    return `This action returns all rating`;
+  async findAllRates() {
+    return await this.prisma.rates.findMany({
+      select: {
+        id: true,
+        rate: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} rating`;
-  }
-
-  update(id: number, updateRatingDto: RatingModelDto) {
-    return `This action updates a #${id} rating`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} rating`;
+  async removeRates(id: number) {
+    await this.prisma.rates.delete({
+      where: { id },
+    });
+    return { message: 'rates deleted successfully' };
   }
 }

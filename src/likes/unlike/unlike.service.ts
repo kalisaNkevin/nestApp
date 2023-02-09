@@ -1,25 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'prisma/prisma.service';
 import { UnlikeModelDto } from './dto/update-unlike.dto';
 
 @Injectable()
 export class UnlikeService {
-  create(createUnlikeDto: UnlikeModelDto) {
-    return 'This action adds a new unlike';
+  constructor(private prisma: PrismaService) {}
+  async unlike(dto: UnlikeModelDto) {
+    const { unlike } = dto;
+    const dislike = await this.prisma.unlike.create({
+      data: {
+        unlike,
+      },
+    });
+    return { dislike };
   }
 
-  findAll() {
-    return `This action returns all unlike`;
+  async findAllUnlike() {
+    return await this.prisma.unlike.findMany({
+      select: {
+        id: true,
+        unlike: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} unlike`;
-  }
-
-  update(id: number, updateUnlikeDto: UnlikeModelDto) {
-    return `This action updates a #${id} unlike`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} unlike`;
+  async removeUnlike(id: number) {
+    await this.prisma.unlike.delete({
+      where: { id },
+    });
+    return { message: 'unlike deleted successfuly' };
   }
 }

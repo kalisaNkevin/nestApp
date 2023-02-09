@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { SignupAuthDto } from './dto/signup-auth.dto';
+import { SigninAuthDto } from './dto/signin-auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtSecret } from '../utils/constants';
@@ -14,15 +15,36 @@ import { Request, Response } from 'express';
 export class AuthService {
   constructor(private prisma: PrismaService, private jwt: JwtService) {}
   async signup(dto: SignupAuthDto) {
-    const { email, password } = dto;
-    const foundUser = await this.prisma.user.findUnique({ where: { email } });
+    const {
+      firstName,
+      lastName,
+      role,
+      birthDate,
+      phoneNumber,
+      email,
+      password,
+    } = dto;
+    const foundUser = await this.prisma.user.findUnique({
+      where: { email },
+    });
     if (foundUser) {
       throw new BadRequestException('Email already exists');
+    }
+    const num = await this.prisma.user.findUnique({
+      where: { phoneNumber },
+    });
+    if (num) {
+      throw new BadRequestException('This Phone number already exist');
     }
 
     const hashedPassword = await this.hashPassword(password);
     await this.prisma.user.create({
       data: {
+        firstName,
+        lastName,
+        role,
+        birthDate,
+        phoneNumber,
         email,
         hashedPassword,
       },
@@ -30,7 +52,7 @@ export class AuthService {
     return { message: 'signup was successfully' };
   }
 
-  async signin(dto: SignupAuthDto, req: Request, res: Response) {
+  async signin(dto: SigninAuthDto, req: Request, res: Response) {
     const { email, password } = dto;
     const foundUser = await this.prisma.user.findUnique({ where: { email } });
     if (!foundUser) {

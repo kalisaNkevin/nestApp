@@ -9,9 +9,15 @@ import {
 } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { MessageModelDto } from './dto/update-message.dto';
-import { ApiBody, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('Message')
+@ApiBearerAuth()
 @Controller('messages')
 export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}

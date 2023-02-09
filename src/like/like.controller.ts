@@ -1,43 +1,35 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { LikeService } from './like.service';
 import { LikeModelDto } from './dto/update-like.dto';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
-@ApiTags('Like')
-@Controller('like')
+@ApiTags('Articles')
+@ApiBearerAuth()
+@Controller('articles/like')
 export class LikeController {
   constructor(private readonly likeService: LikeService) {}
 
   @Post()
-  create(@Body() createLikeDto: LikeModelDto) {
-    return this.likeService.create(createLikeDto);
+  like(@Body() dto: LikeModelDto) {
+    return this.likeService.like(dto);
   }
 
   @Get()
-  findAll() {
-    return this.likeService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.likeService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLikeDto: LikeModelDto) {
-    return this.likeService.update(+id, updateLikeDto);
+  @ApiOkResponse({ description: 'Article Generated' })
+  @ApiBody({ type: LikeModelDto })
+  findAllLikes() {
+    return this.likeService.findAllLikes();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.likeService.remove(+id);
+  @ApiCreatedResponse({ description: 'Like deleted successfuly' })
+  removeLikes(@Param('id') id: string) {
+    return this.likeService.removeLikes(+id);
   }
 }

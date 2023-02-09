@@ -1,43 +1,35 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { UnlikeService } from './unlike.service';
 import { UnlikeModelDto } from './dto/update-unlike.dto';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
-@ApiTags('Unlike')
-@Controller('unlike')
+@ApiTags('Articles')
+@ApiBearerAuth()
+@Controller('articles/unlike')
 export class UnlikeController {
   constructor(private readonly unlikeService: UnlikeService) {}
 
   @Post()
-  create(@Body() createUnlikeDto: UnlikeModelDto) {
-    return this.unlikeService.create(createUnlikeDto);
+  unlike(@Body() dto: UnlikeModelDto) {
+    return this.unlikeService.unlike(dto);
   }
 
   @Get()
-  findAll() {
-    return this.unlikeService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.unlikeService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUnlikeDto: UnlikeModelDto) {
-    return this.unlikeService.update(+id, updateUnlikeDto);
+  @ApiOkResponse({ description: 'Article Generated' })
+  @ApiBody({ type: UnlikeModelDto })
+  findAllUnlike() {
+    return this.unlikeService.findAllUnlike();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.unlikeService.remove(+id);
+  @ApiCreatedResponse({ description: 'Unlike deleted successfuly' })
+  removeUnlike(@Param('id') id: string) {
+    return this.unlikeService.removeUnlike(+id);
   }
 }

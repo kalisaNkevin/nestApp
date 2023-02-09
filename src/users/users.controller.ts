@@ -7,6 +7,8 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { Role } from 'src/auth/entities/role.enum';
+import { Roles } from 'src/auth/usr-decoractor';
 
 @ApiTags('Signup')
 @ApiBearerAuth()
@@ -22,6 +24,7 @@ export class UsersController {
     return this.usersService.getMyUser(params.id, req);
   }
   @Get()
+  @Roles(Role.ADMIN)
   @ApiOkResponse({ description: 'User Generated' })
   getUsers() {
     return this.usersService.getUsers();

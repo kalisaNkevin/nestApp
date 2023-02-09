@@ -9,35 +9,36 @@ import {
 } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { EmployeeModelDto } from './dto/update-employee.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Employee')
+@ApiBearerAuth()
 @Controller('employee')
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
   @Post()
-  create(@Body() createEmployeeDto: EmployeeModelDto) {
-    return this.employeeService.create(createEmployeeDto);
+  Employeee(@Body() dto: EmployeeModelDto) {
+    return this.employeeService.Employeee(dto);
   }
 
   @Get()
-  findAll() {
-    return this.employeeService.findAll();
+  findAllEmployee() {
+    return this.employeeService.findAllEmployee();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.employeeService.findOne(+id);
+  findOneEmployee(@Param('id') id: string) {
+    return this.employeeService.findOneEmployee(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEmployeeDto: EmployeeModelDto) {
-    return this.employeeService.update(+id, updateEmployeeDto);
+  updateEmployee(@Param('id') id: string, @Body() dto: EmployeeModelDto) {
+    return this.employeeService.updateEmployee(+id, dto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.employeeService.remove(+id);
+  removeEmployee(@Param('id') id: string) {
+    return this.employeeService.removeEmployee(+id);
   }
 }

@@ -1,29 +1,44 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class EmployeeModelDto {
+  @IsNotEmpty()
+  @IsString()
   @ApiProperty()
-  Title: string;
-  @ApiProperty()
-  Description: string;
-  @ApiProperty()
-  Body: string;
-  @ApiProperty()
-  Published: boolean;
+  public email: string;
 
   @IsNotEmpty()
   @IsString()
-  public title: string;
+  @ApiProperty()
+  public name: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  public nationalId: number;
 
   @IsNotEmpty()
   @IsString()
-  public description: string;
+  @ApiProperty()
+  public phoneNumber: string;
 
   @IsNotEmpty()
   @IsString()
-  public body: string;
+  @ApiProperty()
+  public birthDate: string;
 
   @IsNotEmpty()
   @IsString()
-  public published: boolean;
+  @ApiProperty()
+  public status: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty()
+  public position: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  public code: number;
 }

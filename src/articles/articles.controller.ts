@@ -13,11 +13,13 @@ import {
   ApiUnauthorizedResponse,
   ApiBody,
   ApiTags,
+  ApiBearerAuth,
 } from '@nestjs/swagger';
 import { ArticlesService } from './articles.service';
 import { ArticleModelDto } from './dto/article-model.dto';
 
 @ApiTags('Articles')
+@ApiBearerAuth()
 @Controller('articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}

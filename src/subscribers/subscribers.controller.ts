@@ -1,46 +1,37 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { SubscribersService } from './subscribers.service';
 import { SubscribeModelDto } from './dto/update-subscriber.dto';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('Subscribers')
+@ApiBearerAuth()
 @Controller('subscribers')
 export class SubscribersController {
   constructor(private readonly subscribersService: SubscribersService) {}
 
   @Post()
-  create(@Body() createSubscriberDto: SubscribeModelDto) {
-    return this.subscribersService.create(createSubscriberDto);
+  @ApiCreatedResponse({ description: 'Article created successfuly' })
+  @ApiBody({ type: SubscribeModelDto })
+  subscribe(@Body() dto: SubscribeModelDto) {
+    return this.subscribersService.subscribe(dto);
   }
 
   @Get()
-  findAll() {
-    return this.subscribersService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.subscribersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateSubscriberDto: SubscribeModelDto,
-  ) {
-    return this.subscribersService.update(+id, updateSubscriberDto);
+  @ApiOkResponse({ description: 'Subscribers Generated' })
+  @ApiBody({ type: SubscribeModelDto })
+  findAllSubscriber() {
+    return this.subscribersService.findAllSubcribe();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.subscribersService.remove(+id);
+  @ApiCreatedResponse({ description: 'unsubscribed deleted successfuly' })
+  removeSubscribe(@Param('id') id: string) {
+    return this.subscribersService.removeSubscrbe(+id);
   }
 }

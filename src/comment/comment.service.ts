@@ -23,21 +23,6 @@ export class CommentService {
     });
   }
 
-  async findComment(id: number) {
-    return await this.prisma.comments.findUnique({ where: { id } });
-  }
-
-  async updateComment(id: number, dto: CommentModelDto) {
-    const { comment } = dto;
-    await this.prisma.comments.findUnique({ where: { id } });
-    return await this.prisma.comments.update({
-      where: { id },
-      data: {
-        comment,
-      },
-    });
-  }
-
   async removeComment(id: number) {
     await this.prisma.comments.delete({
       where: { id },

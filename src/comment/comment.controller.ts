@@ -8,6 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiCreatedResponse,
   ApiOkResponse,
@@ -17,14 +18,15 @@ import {
 import { CommentService } from './comment.service';
 import { CommentModelDto } from './dto/comment-model.dto';
 
-@ApiTags('Comments')
-@Controller('comment')
+@ApiTags('Articles')
+@ApiBearerAuth()
+@Controller('articles/comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Post()
-  comment(@Body() createCommentDto: CommentModelDto) {
-    return this.commentService.comment(createCommentDto);
+  comment(@Body() dto: CommentModelDto) {
+    return this.commentService.comment(dto);
   }
 
   @Get()
@@ -32,19 +34,6 @@ export class CommentController {
   @ApiBody({ type: CommentModelDto })
   getAllComments() {
     return this.commentService.getAllComments();
-  }
-
-  @Get(':id')
-  @ApiOkResponse({ description: 'User information' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorised' })
-  findComment(@Param('id') id: string) {
-    return this.commentService.findComment(+id);
-  }
-
-  @Patch(':id')
-  @ApiOkResponse({ description: 'Comment updated' })
-  updateComment(@Param('id') id: string, @Body() dto: CommentModelDto) {
-    return this.commentService.updateComment(+id, dto);
   }
 
   @Delete(':id')

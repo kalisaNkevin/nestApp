@@ -8,6 +8,9 @@ import {
   ApiBody,
   ApiTags,
 } from '@nestjs/swagger';
+import { SigninAuthDto } from './dto/signin-auth.dto';
+import { Role } from './entities/role.enum';
+import { Roles } from './usr-decoractor';
 
 @ApiTags('Signup')
 @Controller('auth')
@@ -15,6 +18,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
+  @Roles(Role.ADMIN)
   @ApiCreatedResponse({ description: 'User Registration successfuly' })
   @ApiBody({ type: SignupAuthDto })
   signup(@Body() dto: SignupAuthDto) {
@@ -22,10 +26,11 @@ export class AuthController {
   }
 
   @Post('signin')
+  @Roles(Role.ADMIN)
   @ApiOkResponse({ description: 'User Login' })
   @ApiUnauthorizedResponse({ description: 'Invalid credentials!' })
-  @ApiBody({ type: SignupAuthDto })
-  signin(@Body() dto: SignupAuthDto, @Req() req, @Res() res) {
+  @ApiBody({ type: SigninAuthDto })
+  signin(@Body() dto: SigninAuthDto, @Req() req, @Res() res) {
     return this.authService.signin(dto, req, res);
   }
 

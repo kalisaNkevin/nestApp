@@ -3,8 +3,6 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CommentModelDto {
   @ApiProperty()
-  Comment: string;
-
   @IsNotEmpty()
   @IsString()
   public comment: string;

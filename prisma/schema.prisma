@@ -10,6 +10,11 @@ datasource db {
 
 model User {
   id String @unique @default(uuid())
+  firstName String
+  lastName String
+  role String
+  phoneNumber String @unique
+  birthDate String
   email String @unique
   hashedPassword String
   createdAt DateTime @default(now())
@@ -57,18 +62,15 @@ model Rates {
 
 model Subscribers {
   id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Employees {
-  id          Int      @id @default(autoincrement())
+  email       String @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 model Payments {
   id          Int      @id @default(autoincrement())
+  deposit     Int
+  withdraw    Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -79,3 +81,17 @@ model Like {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+model Employee {
+  id          Int      @id @default(autoincrement())
+  email       String @unique
+  name        String
+  nationalId  Int 
+  phoneNumber String
+  birthDate   String
+  status      String
+  position    String
+  code        Int 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+

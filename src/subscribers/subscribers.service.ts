@@ -1,25 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'prisma/prisma.service';
 import { SubscribeModelDto } from './dto/update-subscriber.dto';
 
 @Injectable()
 export class SubscribersService {
-  create(createSubscriberDto: SubscribeModelDto) {
-    return 'This action adds a new subscriber';
+  constructor(private prisma: PrismaService) {}
+  async subscribe(dto: SubscribeModelDto) {
+    const { email } = dto;
+    await this.prisma.subscribers.create({
+      data: {
+        email,
+      },
+    });
+    return { message: 'Subcribed successfully' };
   }
 
-  findAll() {
-    return `This action returns all subscribers`;
+  async findAllSubcribe() {
+    return await this.prisma.subscribers.findMany({
+      select: {
+        id: true,
+        email: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} subscriber`;
-  }
-
-  update(id: number, updateSubscriberDto: SubscribeModelDto) {
-    return `This action updates a #${id} subscriber`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} subscriber`;
+  async removeSubscrbe(id: number) {
+    await this.prisma.subscribers.delete({
+      where: { id },
+    });
+    return { message: 'unsubscribed successfuly' };
   }
 }

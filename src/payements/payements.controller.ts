@@ -9,9 +9,10 @@ import {
 } from '@nestjs/common';
 import { PayementsService } from './payements.service';
 import { PaymentModelDto } from './dto/update-payement.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Payments')
+@ApiBearerAuth()
 @Controller('payements')
 export class PayementsController {
   constructor(private readonly payementsService: PayementsService) {}

@@ -1,11 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty } from 'class-validator';
 
 export class UnlikeModelDto {
   @ApiProperty()
-  Unlike: boolean;
-
   @IsNotEmpty()
-  @IsString()
+  @IsBoolean()
   public unlike: boolean;
 }

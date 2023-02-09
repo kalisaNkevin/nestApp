@@ -11,6 +11,8 @@ import { SubscribersModule } from './subscribers/subscribers.module';
 import { EmployeeModule } from './employee/employee.module';
 import { PayementsModule } from './payements/payements.module';
 import { LikeModule } from './like/like.module';
+import { RolesGuard } from './auth/roles.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -26,6 +28,12 @@ import { LikeModule } from './like/like.module';
     EmployeeModule,
     PayementsModule,
     LikeModule,
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
   ],
 })
 export class AppModule {}

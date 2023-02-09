@@ -2,23 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class MessageModelDto {
-  @ApiProperty()
-  Email: string;
-  @ApiProperty()
-  Subject: string;
-  @ApiProperty()
-  Body: string;
-
   @IsNotEmpty()
   @IsString()
   @IsEmail()
+  @ApiProperty()
   public email: string;
 
   @IsNotEmpty()
   @IsString()
+  @ApiProperty()
   public subject: string;
 
   @IsNotEmpty()
   @IsString()
+  @ApiProperty()
   public body: string;
 }
