@@ -39,9 +39,7 @@ describe('Auth Flow', () => {
         email: user.email,
         password: user.password,
         firstName: '',
-        birthDate: '',
         lastName: undefined,
-        role: undefined,
         phoneNumber: undefined,
       });
 
@@ -56,9 +54,7 @@ describe('Auth Flow', () => {
           email: user.email,
           password: user.password,
           firstName: '',
-          birthDate: '',
           lastName: undefined,
-          role: undefined,
           phoneNumber: undefined,
         });
       } catch (error) {
@@ -79,11 +75,6 @@ describe('Auth Flow', () => {
         tokens = await authService.signinLocal({
           email: user.email,
           password: user.password,
-          firstName: '',
-          birthDate: '',
-          lastName: undefined,
-          role: undefined,
-          phoneNumber: undefined,
         });
       } catch (error) {
         expect(error.status).toBe(403);
@@ -93,24 +84,14 @@ describe('Auth Flow', () => {
     });
 
     it('should login', async () => {
-      await authService.signupLocal({
+      await authService.signinLocal({
         email: user.email,
         password: user.password,
-        firstName: '',
-        birthDate: '',
-        lastName: undefined,
-        role: undefined,
-        phoneNumber: undefined,
       });
 
       const tokens = await authService.signinLocal({
         email: user.email,
         password: user.password,
-        firstName: '',
-        birthDate: '',
-        lastName: undefined,
-        role: undefined,
-        phoneNumber: undefined,
       });
 
       expect(tokens.access_token).toBeTruthy();
@@ -123,11 +104,6 @@ describe('Auth Flow', () => {
         tokens = await authService.signinLocal({
           email: user.email,
           password: user.password + 'a',
-          firstName: '',
-          birthDate: '',
-          lastName: undefined,
-          role: undefined,
-          phoneNumber: undefined,
         });
       } catch (error) {
         expect(error.status).toBe(403);
@@ -152,9 +128,7 @@ describe('Auth Flow', () => {
         email: user.email,
         password: user.password,
         firstName: '',
-        birthDate: '',
         lastName: undefined,
-        role: undefined,
         phoneNumber: undefined,
       });
 
@@ -168,7 +142,7 @@ describe('Auth Flow', () => {
       expect(userFromDb?.hashedRt).toBeTruthy();
 
       // logout
-      await authService.logout(userFromDb!.id);
+      await authService.logout(userFromDb?.id);
 
       userFromDb = await prisma.user.findFirst({
         where: {
@@ -202,9 +176,7 @@ describe('Auth Flow', () => {
         email: user.email,
         password: user.password,
         firstName: '',
-        birthDate: '',
         lastName: undefined,
-        role: undefined,
         phoneNumber: undefined,
       });
 
@@ -236,9 +208,7 @@ describe('Auth Flow', () => {
         email: user.email,
         password: user.password,
         firstName: '',
-        birthDate: '',
         lastName: undefined,
-        role: undefined,
         phoneNumber: undefined,
       });
       console.log({
@@ -267,9 +237,7 @@ describe('Auth Flow', () => {
         email: user.email,
         password: user.password,
         firstName: '',
-        birthDate: '',
         lastName: undefined,
-        role: undefined,
         phoneNumber: undefined,
       });
 
@@ -280,7 +248,7 @@ describe('Auth Flow', () => {
       const userId = Number(decoded?.sub);
 
       // since jwt uses seconds signature we need to wait for 1 second to have new jwts
-      await new Promise((resolve, reject) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           resolve(true);
         }, 1000);

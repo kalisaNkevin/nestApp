@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { MessageModelDto } from './dto/update-message.dto';
 import {
@@ -30,22 +22,12 @@ export class MessagesController {
   }
 
   @Get()
-  findAll() {
-    return this.messagesService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.messagesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMessageDto: MessageModelDto) {
-    return this.messagesService.update(+id, updateMessageDto);
+  findAllMessages() {
+    return this.messagesService.findAllMessages();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.messagesService.remove(+id);
+  removeMessage(@Param('id') id: string) {
+    return this.messagesService.removeMessage(+id);
   }
 }

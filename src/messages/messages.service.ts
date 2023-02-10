@@ -17,19 +17,21 @@ export class MessagesService {
     return { text };
   }
 
-  findAll() {
-    return `This action returns all messages`;
+  async findAllMessages() {
+    return await this.prisma.message.findMany({
+      select: {
+        id: true,
+        email: true,
+        subject: true,
+        body: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} message`;
-  }
-
-  update(id: number, updateMessageDto: MessageModelDto) {
-    return `This action updates a #${id} message`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} message`;
+  async removeMessage(id: number) {
+    await this.prisma.message.delete({
+      where: { id },
+    });
+    return { message: 'message deleted successfuly' };
   }
 }
