@@ -1,4 +1,1 @@
-export class Auth {
-  name: string;
-  role: string[];
-}
+export class Auth {}

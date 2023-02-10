@@ -11,11 +11,13 @@ import { SubscribersModule } from './subscribers/subscribers.module';
 import { EmployeeModule } from './employee/employee.module';
 import { PayementsModule } from './payements/payements.module';
 import { LikeModule } from './like/like.module';
-import { RolesGuard } from './auth/roles.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { AtGuard } from './common/guards';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     PrismaModule,
     UsersModule,
@@ -32,7 +34,7 @@ import { APP_GUARD } from '@nestjs/core';
   providers: [
     {
       provide: APP_GUARD,
-      useClass: RolesGuard,
+      useClass: AtGuard,
     },
   ],
 })

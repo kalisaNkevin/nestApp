@@ -9,9 +9,9 @@ import { Request } from 'express';
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
-  async getMyUser(id: string, req: Request) {
+  async getMyUser(id: number, req: Request) {
     const user = await this.prisma.user.findUnique({ where: { id } });
-    const decodeUserInfo = req.user as { id: string; email: string };
+    const decodeUserInfo = req.user as { id: number; email: string };
     const foundUser = await this.prisma.user.findUnique({ where: { id } });
     if (!foundUser) {
       throw new NotFoundException();
@@ -19,7 +19,7 @@ export class UsersService {
     if (foundUser.id !== decodeUserInfo.id) {
       throw new ForbiddenException();
     }
-    delete foundUser.hashedPassword;
+    delete foundUser.hash;
     return { user };
   }
   async getUsers() {
