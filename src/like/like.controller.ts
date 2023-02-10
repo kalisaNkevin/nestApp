@@ -22,7 +22,6 @@ export class LikeController {
 
   @Get()
   @ApiOkResponse({ description: 'Article Generated' })
-  @ApiBody({ type: LikeModelDto })
   findAllLikes() {
     return this.likeService.findAllLikes();
   }

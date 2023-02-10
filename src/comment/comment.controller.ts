@@ -22,7 +22,6 @@ export class CommentController {
 
   @Get()
   @ApiOkResponse({ description: 'Article Generated' })
-  @ApiBody({ type: CommentModelDto })
   getAllComments() {
     return this.commentService.getAllComments();
   }

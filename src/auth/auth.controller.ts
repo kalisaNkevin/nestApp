@@ -42,6 +42,7 @@ export class AuthController {
   signinLocal(@Body() dto: SignAuth): Promise<Tokens> {
     return this.authService.signinLocal(dto);
   }
+
   @Post('signout')
   @ApiCreatedResponse({ description: 'User Loggedout Successfuly' })
   @HttpCode(HttpStatus.OK)

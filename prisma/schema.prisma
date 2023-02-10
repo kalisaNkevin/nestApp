@@ -10,12 +10,12 @@ datasource db {
 
 model User {
   id Int  @id @default(autoincrement())
+  firstName String
+  lastName String
   email    String  @unique
   hash     String
   hashedRt String?
-  firstName String
-  lastName String
-  phoneNumber String @unique
+  role     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
   @@map("users")

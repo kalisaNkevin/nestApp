@@ -15,6 +15,7 @@ import {
   ApiTags,
   ApiBearerAuth,
 } from '@nestjs/swagger';
+import { Public } from 'src/common/decorators';
 import { ArticlesService } from './articles.service';
 import { ArticleModelDto } from './dto/article-model.dto';
 
@@ -24,6 +25,7 @@ import { ArticleModelDto } from './dto/article-model.dto';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
+  @Public()
   @Post()
   @ApiCreatedResponse({ description: 'Article created successfuly' })
   @ApiBody({ type: ArticleModelDto })
@@ -33,7 +35,6 @@ export class ArticlesController {
 
   @Get()
   @ApiOkResponse({ description: 'Article Generated' })
-  @ApiBody({ type: ArticleModelDto })
   getAllBlogs() {
     return this.articlesService.getAllBlogs();
   }

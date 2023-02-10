@@ -22,7 +22,6 @@ export class UnlikeController {
 
   @Get()
   @ApiOkResponse({ description: 'Article Generated' })
-  @ApiBody({ type: UnlikeModelDto })
   findAllUnlike() {
     return this.unlikeService.findAllUnlike();
   }

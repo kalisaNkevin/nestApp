@@ -24,7 +24,6 @@ export class SubscribersController {
 
   @Get()
   @ApiOkResponse({ description: 'Subscribers Generated' })
-  @ApiBody({ type: SubscribeModelDto })
   findAllSubscriber() {
     return this.subscribersService.findAllSubcribe();
   }

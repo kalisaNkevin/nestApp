@@ -1,15 +1,16 @@
 -- CreateTable
-CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
+CREATE TABLE "users" (
+    "id" SERIAL NOT NULL,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
-    "role" TEXT NOT NULL,
-    "phoneNumber" TEXT NOT NULL,
-    "birthDate" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "hashedPassword" TEXT NOT NULL,
+    "hash" TEXT NOT NULL,
+    "hashedRt" TEXT,
+    "role" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -97,30 +98,24 @@ CREATE TABLE "Like" (
 );
 
 -- CreateTable
-CREATE TABLE "employee" (
+CREATE TABLE "Employee" (
     "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "natioanId" INTEGER NOT NULL,
-    "code" INTEGER NOT NULL,
-    "phoneNumber" TEXT,
     "email" TEXT NOT NULL,
-    "birthDate" TEXT,
+    "name" TEXT NOT NULL,
+    "nationalId" INTEGER NOT NULL,
+    "phoneNumber" TEXT NOT NULL,
+    "birthDate" TEXT NOT NULL,
     "status" TEXT NOT NULL,
     "position" TEXT NOT NULL,
+    "code" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "employee_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Employee_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_id_key" ON "User"("id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "User_phoneNumber_key" ON "User"("phoneNumber");
-
--- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Message_email_key" ON "Message"("email");
@@ -129,13 +124,4 @@ CREATE UNIQUE INDEX "Message_email_key" ON "Message"("email");
 CREATE UNIQUE INDEX "Subscribers_email_key" ON "Subscribers"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "employee_natioanId_key" ON "employee"("natioanId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "employee_code_key" ON "employee"("code");
-
--- CreateIndex
-CREATE UNIQUE INDEX "employee_phoneNumber_key" ON "employee"("phoneNumber");
-
--- CreateIndex
-CREATE UNIQUE INDEX "employee_email_key" ON "employee"("email");
+CREATE UNIQUE INDEX "Employee_email_key" ON "Employee"("email");

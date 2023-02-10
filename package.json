@@ -18,11 +18,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/nestapp/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/nestapp/test/jest-e2e.json",
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
-    "@nestjs/config": "^2.2.0",
+    "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
     "@nestjs/jwt": "^10.0.1",
     "@nestjs/mapped-types": "*",
@@ -31,11 +32,16 @@
     "@nestjs/serve-static": "^3.0.0",
     "@nestjs/swagger": "^6.1.4",
     "@prisma/client": "^4.10.1",
+    "@sendgrid/mail": "^7.7.0",
+    "@types/nodemailer": "^6.4.7",
     "argon2": "^0.30.3",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
+    "helmet": "^6.0.1",
+    "juice": "^8.1.0",
+    "nodemailer": "^6.9.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "path": "^0.12.7",
@@ -89,5 +95,8 @@
     "roots": [
       "<rootDir>/apps/"
     ]
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
