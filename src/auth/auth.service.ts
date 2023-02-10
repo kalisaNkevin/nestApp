@@ -18,7 +18,7 @@ export class AuthService {
 
   async signupLocal(dto: AuthDto): Promise<Tokens> {
     const hash = await argon.hash(dto.password);
-    const { firstName, lastName, email } = dto;
+    const { firstName, lastName, email, role } = dto;
 
     const user = await this.prisma.user
       .create({
@@ -27,6 +27,7 @@ export class AuthService {
           lastName,
           email,
           hash,
+          role,
         },
       })
       .catch((error) => {
